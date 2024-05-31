@@ -353,7 +353,7 @@ namespace ExpressionEvaluation.Runtime
                     }
                     funcExecuter = (IFunction)obj;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     throw new Exception(string.Format(Afe_Common.MSG_METH_NOTFOUND, new string[] { identifierStr.ToUpperInvariant() }));
                 }

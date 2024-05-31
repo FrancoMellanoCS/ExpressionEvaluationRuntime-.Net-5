@@ -73,7 +73,7 @@ namespace ExpressionEvaluation.Runtime.Functions
                 {
                     return Afe_Common.Round(Afe_Common.ToDecimal(args[Afe_Common.Const_Key_One], dc.WorkingCulture), dc);
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
                     throw new Exception(string.Format(Afe_Common.MSG_METH_PARAM_INVALID, new string[] { "value" }));
                 }

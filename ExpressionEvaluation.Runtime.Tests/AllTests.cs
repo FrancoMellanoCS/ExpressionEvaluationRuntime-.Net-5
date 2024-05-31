@@ -93,19 +93,19 @@ public class AllTests
     {
 
         Expression expr1 = new Expression("a >= 1.23");
-        Assert.Equal(true, expr1.Bind("a", 1.23).Eval<bool>());
+        Assert.True(expr1.Bind("a", 1.23).Eval<bool>());
 
         Expression expr2 = new Expression("a >= 1.23");
-        Assert.Equal(true, expr2.Bind("a", 1.24).Eval<bool>());
+        Assert.True(expr2.Bind("a", 1.24).Eval<bool>());
 
         Expression expr3 = new Expression("a >= 1.23");
-        Assert.Equal(false, expr3.Bind("a", 1.22).Eval<bool>());
+        Assert.False(expr3.Bind("a", 1.22).Eval<bool>());
 
         Expression expr4 = new Expression("a >= 1.23");
-        Assert.Equal(true, expr4.Bind("a", 3).Eval<bool>());
+        Assert.True(expr4.Bind("a", 3).Eval<bool>());
 
         Expression expr5 = new Expression("true >= false");
-        Assert.Equal(true, expr5.Eval<bool>());
+        Assert.True(expr5.Eval<bool>());
     }
 
     [Fact]
@@ -113,16 +113,16 @@ public class AllTests
     {
 
         Expression expr1 = new Expression("a > 1.23");
-        Assert.Equal(false, expr1.Bind("a", 1.23).Eval<bool>());
+        Assert.False(expr1.Bind("a", 1.23).Eval<bool>());
 
         Expression expr2 = new Expression("a > 1.23");
-        Assert.Equal(true, expr2.Bind("a", 1.24).Eval<bool>());
+        Assert.True(expr2.Bind("a", 1.24).Eval<bool>());
 
         Expression expr3 = new Expression("true > false");
-        Assert.Equal(true, expr3.Eval<bool>());
+        Assert.True(expr3.Eval<bool>());
 
         Expression expr4 = new Expression("false > true");
-        Assert.Equal(false, expr4.Eval<bool>());
+        Assert.False(expr4.Eval<bool>());
     }
 
     [Fact]
@@ -130,10 +130,10 @@ public class AllTests
     {
 
         Expression expr1 = new Expression("a <= 1.23");
-        Assert.Equal(true, expr1.Bind("a", 1.23).Eval<bool>());
+        Assert.True(expr1.Bind("a", 1.23).Eval<bool>());
 
         Expression expr2 = new Expression("a <= 1.23");
-        Assert.Equal(true, expr2.Bind("a", 1.22d).Eval<bool>());
+        Assert.True(expr2.Bind("a", 1.22d).Eval<bool>());
 
     }
 
@@ -142,13 +142,13 @@ public class AllTests
     {
 
         Expression expr1 = new Expression("a < 1.23");
-        Assert.Equal(false, expr1.Bind("a", 1.23).Eval<bool>());
+        Assert.False(expr1.Bind("a", 1.23).Eval<bool>());
 
         Expression expr2 = new Expression("a < 1.23");
-        Assert.Equal(true, expr2.Bind("a", 1.22m).Eval<bool>());
+        Assert.True(expr2.Bind("a", 1.22m).Eval<bool>());
 
         Expression expr3 = new Expression("a < (373434*13214235.64)");
-        Assert.Equal(true, expr3.Bind("a", (373434 * 13214235.64) - 1).Eval<bool>());
+        Assert.True(expr3.Bind("a", (373434 * 13214235.64) - 1).Eval<bool>());
 
     }
 
@@ -157,22 +157,22 @@ public class AllTests
     {
 
         Expression expr1 = new Expression("a = null");
-        Assert.Equal(true, expr1.Bind("a", null).Eval<bool>());
+        Assert.True(expr1.Bind("a", null).Eval<bool>());
 
         Expression expr2 = new Expression("a = 1.23");
-        Assert.Equal(true, expr2.Bind("a", 1.23).Eval<bool>());
+        Assert.True(expr2.Bind("a", 1.23).Eval<bool>());
 
         Expression expr3 = new Expression("a = (373434*13214235.64)");
-        Assert.Equal(true, expr3.Bind("a", 373434 * 13214235.64).Eval<bool>());
+        Assert.True(expr3.Bind("a", 373434 * 13214235.64).Eval<bool>());
 
         Expression expr4 = new Expression("a = 1.22");
-        Assert.Equal(false, expr4.Bind("a", 1.23).Eval<bool>());
+        Assert.False(expr4.Bind("a", 1.23).Eval<bool>());
 
         Expression expr5 = new Expression("a = b");
-        Assert.Equal(true, expr5.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue).Eval<bool>());
+        Assert.True(expr5.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue).Eval<bool>());
 
         Expression expr6 = new Expression("a = b");
-        Assert.Equal(false, expr6.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue - 1).Eval<bool>());
+        Assert.False(expr6.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue - 1).Eval<bool>());
 
     }
 
@@ -181,31 +181,31 @@ public class AllTests
     {
 
         Expression expr1 = new Expression("a <> null");
-        Assert.Equal(true, expr1.Bind("a", 1).Eval<bool>());
+        Assert.True(expr1.Bind("a", 1).Eval<bool>());
 
         Expression expr1b = new Expression("a <> null");
-        Assert.Equal(false, expr1b.Bind("a", null).Eval<bool>());
+        Assert.False(expr1b.Bind("a", null).Eval<bool>());
 
         Expression expr2 = new Expression("a <> 1.23");
-        Assert.Equal(false, expr2.Bind("a", 1.23).Eval<bool>());
+        Assert.False(expr2.Bind("a", 1.23).Eval<bool>());
 
         Expression expr2b = new Expression("a <> 1.23");
-        Assert.Equal(true, expr2b.Bind("a", 1.22).Eval<bool>());
+        Assert.True(expr2b.Bind("a", 1.22).Eval<bool>());
 
         Expression expr2c = new Expression("a <> 1.23");
-        Assert.Equal(true, expr2c.Bind("a", null).Eval<bool>());
+        Assert.True(expr2c.Bind("a", null).Eval<bool>());
 
         Expression expr3 = new Expression("a <> (373434*13214235.64)");
-        Assert.Equal(false, expr3.Bind("a", 373434 * 13214235.64).Eval<bool>());
+        Assert.False(expr3.Bind("a", 373434 * 13214235.64).Eval<bool>());
 
         Expression expr4 = new Expression("a <> 1.22");
-        Assert.Equal(true, expr4.Bind("a", 1.23).Eval<bool>());
+        Assert.True(expr4.Bind("a", 1.23).Eval<bool>());
 
         Expression expr5 = new Expression("a <> b");
-        Assert.Equal(false, expr5.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue).Eval<bool>());
+        Assert.False(expr5.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue).Eval<bool>());
 
         Expression expr6 = new Expression("a <> b");
-        Assert.Equal(true, expr6.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue - 1).Eval<bool>());
+        Assert.True(expr6.Bind("a", decimal.MaxValue).Bind("b", decimal.MaxValue - 1).Eval<bool>());
 
     }
 
@@ -220,7 +220,7 @@ public class AllTests
         Assert.Equal(32.880211m, expr1.Eval<decimal>());
 
         expr1 = new Expression("--1==1");
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
     }
 
     [Fact]
@@ -248,7 +248,7 @@ public class AllTests
         Assert.Equal(-186.054477m, expr7.Eval<decimal>());
 
         Expression expr8 = new Expression("(1>2 || 6<7 || 1.2+1==2) && true || not(false)");
-        Assert.Equal(true, expr8.Eval<bool>());
+        Assert.True(expr8.Eval<bool>());
 
     }
 
@@ -276,16 +276,16 @@ public class AllTests
     public void Math_Wrong_Expr_Test()
     {
         Expression expr1 = new Expression("2+1*");
-        Assert.NotEqual(0, expr1.GetError().Count);
+        Assert.NotEmpty(expr1.GetError());
 
         Expression expr2 = new Expression("2+1)");
-        Assert.NotEqual(0, expr2.GetError().Count);
+        Assert.NotEmpty(expr2.GetError());
 
         Expression expr3 = new Expression("()");
-        Assert.NotEqual(0, expr3.GetError().Count);
+        Assert.NotEmpty(expr3.GetError());
 
         Expression expr4 = new Expression("(3+2");
-        Assert.NotEqual(0, expr4.GetError().Count);
+        Assert.NotEmpty(expr4.GetError());
 
     }
 
@@ -293,53 +293,53 @@ public class AllTests
     public void Math_AndOr_Test()
     {
         Expression expr1 = new Expression("true&&false");
-        Assert.Equal(false, expr1.Eval<bool>());
+        Assert.False(expr1.Eval<bool>());
 
         Expression expr2 = new Expression("(3>2) && (1>3 || 8>7)");
-        Assert.Equal(true, expr2.Eval<bool>());
+        Assert.True(expr2.Eval<bool>());
 
         Expression expr3 = new Expression("1>2 || 3 > 2 && 6 > 7 ");
-        Assert.Equal(false, expr3.Eval<bool>());
+        Assert.False(expr3.Eval<bool>());
 
         Expression expr4 = new Expression("(a && true)");
-        Assert.Equal(false, expr4.Bind("a", false).Eval<bool>());
+        Assert.False(expr4.Bind("a", false).Eval<bool>());
 
         Expression expr5 = new Expression("(a || false)");
-        Assert.Equal(false, expr5.Bind("a", false).Eval<bool>());
+        Assert.False(expr5.Bind("a", false).Eval<bool>());
 
         Expression expr6 = new Expression("(a || false) && (2 > b)");
-        Assert.Equal(false, expr5.Bind("a", false).Bind("b", 1).Eval<bool>());
+        Assert.False(expr5.Bind("a", false).Bind("b", 1).Eval<bool>());
 
         expr6.SetFomular("not(x<7 || sqrt(max(x,9,3,min(4,3))) <= 3)");
-        Assert.Equal(true, expr6.Bind("x", 22.9m).Eval<bool>());
+        Assert.True(expr6.Bind("x", 22.9m).Eval<bool>());
     }
 
     [Fact]
     public void Math_Ifelse_Test()
     {
         Expression expr1 = new Expression("if(a>b,true,false)");
-        Assert.Equal(true, expr1.Bind("a", 10).Bind("b", 9).Eval<bool>());
+        Assert.True(expr1.Bind("a", 10).Bind("b", 9).Eval<bool>());
 
         Expression expr2 = new Expression("if(a>b,true,if(1>2,true,false))");
-        Assert.Equal(false, expr2.Bind("a", 8).Bind("b", 9).Eval<bool>());
+        Assert.False(expr2.Bind("a", 8).Bind("b", 9).Eval<bool>());
 
         Expression expr3 = new Expression("if(a>b,true,3)");
-        Assert.NotEqual(0, expr3.Bind("a", 10).Bind("b", 9).GetError().Count);
+        Assert.NotEmpty(expr3.Bind("a", 10).Bind("b", 9).GetError());
 
         Expression expr4 = new Expression("if(if(true,true,false),true,3)");
-        Assert.NotEqual(0, expr4.Bind("a", 10).Bind("b", 9).GetError().Count);
+        Assert.NotEmpty(expr4.Bind("a", 10).Bind("b", 9).GetError());
 
         Expression expr5 = new Expression("if(true,12)");
-        Assert.NotEqual(0, expr5.GetError().Count);
+        Assert.NotEmpty(expr5.GetError());
 
         Expression expr6 = new Expression("if(2>1)");
-        Assert.NotEqual(0, expr6.GetError().Count);
+        Assert.NotEmpty(expr6.GetError());
 
         Expression expr7 = new Expression("if(2>1,true,false");
-        Assert.NotEqual(0, expr7.GetError().Count);
+        Assert.NotEmpty(expr7.GetError());
 
         Expression expr8 = new Expression("if(2+1,true,false)");
-        Assert.NotEqual(0, expr8.GetError().Count);
+        Assert.NotEmpty(expr8.GetError());
 
     }
 
@@ -350,16 +350,16 @@ public class AllTests
         Assert.Equal("mango", expr1.Bind("a", 2).Eval().ToString());
 
         Expression expr2 = new Expression("switch(a,1,pi,2,\"mango\",e)");
-        Assert.NotEqual(0, expr2.Bind("a", 2).GetError().Count);
+        Assert.NotEmpty(expr2.Bind("a", 2).GetError());
 
         Expression expr3 = new Expression("switch(a)");
-        Assert.NotEqual(0, expr3.Bind("a", 2).GetError().Count);
+        Assert.NotEmpty(expr3.Bind("a", 2).GetError());
 
         Expression expr4 = new Expression("switch(a,1,2,3,4)");
-        Assert.NotEqual(0, expr4.Bind("a", 2).GetError().Count);
+        Assert.NotEmpty(expr4.Bind("a", 2).GetError());
 
         Expression expr5 = new Expression("switch(a,1(2,3;4;5)");
-        Assert.NotEqual(0, expr5.Bind("a", 2).GetError().Count);
+        Assert.NotEmpty(expr5.Bind("a", 2).GetError());
     }
 
     [Fact]
@@ -392,25 +392,25 @@ public class AllTests
     public void Math_Logical_Test()
     {
         Expression expr1 = new Expression("AND(2>1,3<9/2)");
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
 
         Expression expr2 = new Expression("OR(2>1,3>9/2)");
-        Assert.Equal(true, expr2.Eval<bool>());
+        Assert.True(expr2.Eval<bool>());
 
         Expression expr3 = new Expression("IF(OR(2>1,3>9/2),1,2)");
         Assert.Equal(1, expr3.Eval<int>());
 
         Expression expr4 = new Expression("XOR(2>1,3<9/2)");
-        Assert.Equal(false, expr4.Eval<bool>());
+        Assert.False(expr4.Eval<bool>());
 
         Expression expr5 = new Expression("XOR(2>1,3<9/2,6<10,100<200)");
-        Assert.Equal(false, expr5.Eval<bool>());
+        Assert.False(expr5.Eval<bool>());
 
         Expression expr6 = new Expression("XOR(2>1,3<9/2,6<10)");
-        Assert.Equal(true, expr6.Eval<bool>());
+        Assert.True(expr6.Eval<bool>());
 
         Expression expr7 = new Expression("NOT(true)");
-        Assert.Equal(false, expr7.Eval<bool>());
+        Assert.False(expr7.Eval<bool>());
     }
 
     [Fact]
@@ -540,10 +540,10 @@ public class AllTests
         Assert.Equal(5m, expr6.Eval<decimal>());
 
         Expression expr7 = new Expression("RAND()");
-        Assert.Equal(true, expr7.SetScale(4).Eval<decimal>() >= 0);
+        Assert.True(expr7.SetScale(4).Eval<decimal>() >= 0);
 
         Expression expr8 = new Expression("RAND()");
-        Assert.Equal(true, expr8.SetScale(4).Eval<decimal>() <= 1);
+        Assert.True(expr8.SetScale(4).Eval<decimal>() <= 1);
 
     }
 
@@ -622,13 +622,13 @@ public class AllTests
         Assert.Equal(1M, expr1.Bind("x", 0.1).Eval<decimal>());
 
         expr1.SetFomular("1+cot(x)^2=1/sin(x)^2");
-        Assert.Equal(true, expr1.Bind("x", randomAngle).Eval<bool>());
+        Assert.True(expr1.Bind("x", randomAngle).Eval<bool>());
 
         expr1.SetFomular("1+cot(x)^2=1/sin(x)^2");
-        Assert.Equal(true, expr1.Bind("x", randomAngle).Eval<bool>());
+        Assert.True(expr1.Bind("x", randomAngle).Eval<bool>());
 
         expr1.SetFomular("sin(y)^6+cos(y)^6 = (sin(y)^2+cos(y)^2)*(sin(y)^4-sin(y)^2*cos(y)^2+cos(y)^4)");
-        Assert.Equal(true, expr1.Bind("y", randomAngle).Eval<bool>());
+        Assert.True(expr1.Bind("y", randomAngle).Eval<bool>());
 
         expr1.SetFomular("tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))");
         Assert.Equal(0, expr1.Bind("a", Math.PI / 6).Eval<decimal>());
@@ -637,14 +637,14 @@ public class AllTests
         Assert.Equal(0, expr1.Bind("a", randomAngle).Eval<decimal>());
 
         expr1.SetFomular("if(tan(a)^3-((3*sin(a)-sin(3*a))/(3*cos(a)+cos(3*a)))==0,if(sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4),true,false),false)");
-        Assert.Equal(true, expr1.Bind("a", randomAngle).Eval<bool>());
+        Assert.True(expr1.Bind("a", randomAngle).Eval<bool>());
 
         expr1.SetFomular("sin(a) - cos(a) = SQRT(2) * sin(a - pi / 4)");
-        Assert.Equal(true, expr1.Bind("a", randomAngle).Eval<bool>());
+        Assert.True(expr1.Bind("a", randomAngle).Eval<bool>());
 
         expr1.SetFomular("(a>b)||(PI()<(d-e+power(f,2)))&&(4+6>8)");
         expr1.Bind("a", 3).Bind("b", 2).Bind("d", 21.45m).Bind("e", 0.2).Bind("f", 0.1);
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
 
         expr1.SetFomular("(3.4 + -4.1) / 2");
         Assert.Equal(-0.35m, expr1.Eval<decimal>());
@@ -698,26 +698,26 @@ public class AllTests
     public void Text_Operator_Ge_Test()
     {
         Expression expr1 = new Expression("a >= \"abc\"");
-        Assert.Equal(true, expr1.Bind("a", "abc").Eval<bool>());
+        Assert.True(expr1.Bind("a", "abc").Eval<bool>());
 
         Expression expr2 = new Expression("a >= \"axyz\"");
-        Assert.Equal(true, expr2.Bind("a", "bxyz").Eval<bool>());
+        Assert.True(expr2.Bind("a", "bxyz").Eval<bool>());
 
         Expression expr3 = new Expression("a >= \"axyz\"");
-        Assert.Equal(false, expr3.Bind("a", null).Eval<bool>());
+        Assert.False(expr3.Bind("a", null).Eval<bool>());
     }
 
     [Fact]
     public void Text_Operator_Gt_Test()
     {
         Expression expr1 = new Expression("a > \"abc\"");
-        Assert.Equal(false, expr1.Bind("a", "abc").Eval<bool>());
+        Assert.False(expr1.Bind("a", "abc").Eval<bool>());
 
         Expression expr2 = new Expression("a > \"axyz\"");
-        Assert.Equal(true, expr2.Bind("a", "baaa").Eval<bool>());
+        Assert.True(expr2.Bind("a", "baaa").Eval<bool>());
 
         Expression expr3 = new Expression("a > \"axyz\"");
-        Assert.Equal(false, expr3.Bind("a", null).Eval<bool>());
+        Assert.False(expr3.Bind("a", null).Eval<bool>());
 
     }
 
@@ -725,85 +725,85 @@ public class AllTests
     public void Text_Operator_Le_Test()
     {
         Expression expr1 = new Expression("a <= \"abc\"");
-        Assert.Equal(true, expr1.Bind("a", "abc").Eval<bool>());
+        Assert.True(expr1.Bind("a", "abc").Eval<bool>());
 
         Expression expr2 = new Expression("a <= \"bxyz\"");
-        Assert.Equal(true, expr2.Bind("a", "a123").Eval<bool>());
+        Assert.True(expr2.Bind("a", "a123").Eval<bool>());
 
         Expression expr3 = new Expression("a <= \"bxyz\"");
-        Assert.Equal(false, expr3.Bind("a", "c").Eval<bool>());
+        Assert.False(expr3.Bind("a", "c").Eval<bool>());
 
         Expression expr4 = new Expression("a <= \"bxyz\" || b <= \"bxyz\"");
-        Assert.Equal(true, expr4.Bind("a", "a123").Bind("b", "c").Eval<bool>());
+        Assert.True(expr4.Bind("a", "a123").Bind("b", "c").Eval<bool>());
 
         Expression expr5 = new Expression("a <= \"bxyz\" && b <= \"bxyz\"");
-        Assert.Equal(false, expr5.Bind("a", "a123").Bind("b", "c").Eval<bool>());
+        Assert.False(expr5.Bind("a", "a123").Bind("b", "c").Eval<bool>());
 
         Expression expr6 = new Expression("a <= \"bxyz\" && b <= \"bxyz\" || 6 > 4");
-        Assert.Equal(true, expr6.Bind("a", "d").Bind("b", "c").Eval<bool>());
+        Assert.True(expr6.Bind("a", "d").Bind("b", "c").Eval<bool>());
 
         Expression expr7 = new Expression("a <= \"bxyz\" && (b <= \"bxyz\" || 6 > 4)");
-        Assert.Equal(false, expr7.Bind("a", "dd").Bind("b", "c").Eval<bool>());
+        Assert.False(expr7.Bind("a", "dd").Bind("b", "c").Eval<bool>());
     }
 
     [Fact]
     public void Text_Operator_Lt_Test()
     {
         Expression expr1 = new Expression("a < \"abc\"");
-        Assert.Equal(false, expr1.Bind("a", "abc").Eval<bool>());
+        Assert.False(expr1.Bind("a", "abc").Eval<bool>());
 
         Expression expr2 = new Expression("a < \"bxyz\"");
-        Assert.Equal(true, expr2.Bind("a", "a123").Eval<bool>());
+        Assert.True(expr2.Bind("a", "a123").Eval<bool>());
 
         Expression expr3 = new Expression("a < \"bxyz\"");
-        Assert.Equal(false, expr3.Bind("a", null).Eval<bool>());
+        Assert.False(expr3.Bind("a", null).Eval<bool>());
 
         Expression expr4 = new Expression("a < b");
-        Assert.Equal(false, expr4.Bind("b", null).Bind("a", null).Eval<bool>());
+        Assert.False(expr4.Bind("b", null).Bind("a", null).Eval<bool>());
     }
 
     [Fact]
     public void Text_Operator_eq_Test()
     {
         Expression expr1 = new Expression("a == \"abc\"");
-        Assert.Equal(true, expr1.Bind("a", "abc").Eval<bool>());
+        Assert.True(expr1.Bind("a", "abc").Eval<bool>());
 
         Expression expr2 = new Expression("a == \"bxyz\"");
-        Assert.Equal(false, expr2.Bind("a", "a123").Eval<bool>());
+        Assert.False(expr2.Bind("a", "a123").Eval<bool>());
 
         Expression expr2b = new Expression("a == b");
-        Assert.Equal(true, expr2b.Bind("b", "").Bind("a", "").Eval<bool>());
+        Assert.True(expr2b.Bind("b", "").Bind("a", "").Eval<bool>());
 
         Expression expr2c = new Expression("a == b");
-        Assert.Equal(false, expr2c.Bind("b", "abc").Bind("a", "aBc").Eval<bool>());
+        Assert.False(expr2c.Bind("b", "abc").Bind("a", "aBc").Eval<bool>());
 
         Expression expr3 = new Expression("a == \"bxyz\"");
-        Assert.Equal(false, expr3.Bind("a", null).Eval<bool>());
+        Assert.False(expr3.Bind("a", null).Eval<bool>());
 
         Expression expr4 = new Expression("a == b");
-        Assert.Equal(true, expr4.Bind("b", null).Bind("a", null).Eval<bool>());
+        Assert.True(expr4.Bind("b", null).Bind("a", null).Eval<bool>());
     }
 
     [Fact]
     public void Text_Operator_neq_Test()
     {
         Expression expr1 = new Expression("a <> \"abc\"");
-        Assert.Equal(false, expr1.Bind("a", "abc").Eval<bool>());
+        Assert.False(expr1.Bind("a", "abc").Eval<bool>());
 
         Expression expr2 = new Expression("a <> \"bxyz\"");
-        Assert.Equal(true, expr2.Bind("a", "a123").Eval<bool>());
+        Assert.True(expr2.Bind("a", "a123").Eval<bool>());
 
         Expression expr2b = new Expression("a <> b");
-        Assert.Equal(false, expr2b.Bind("b", "").Bind("a", "").Eval<bool>());
+        Assert.False(expr2b.Bind("b", "").Bind("a", "").Eval<bool>());
 
         Expression expr2c = new Expression("a <> b");
-        Assert.Equal(true, expr2c.Bind("b", "abc").Bind("a", "aBc").Eval<bool>());
+        Assert.True(expr2c.Bind("b", "abc").Bind("a", "aBc").Eval<bool>());
 
         Expression expr3 = new Expression("a <> \"bxyz\"");
-        Assert.Equal(true, expr3.Bind("a", null).Eval<bool>());
+        Assert.True(expr3.Bind("a", null).Eval<bool>());
 
         Expression expr4 = new Expression("a <> b");
-        Assert.Equal(false, expr4.Bind("b", null).Bind("a", null).Eval<bool>());
+        Assert.False(expr4.Bind("b", null).Bind("a", null).Eval<bool>());
     }
 
     [Fact]
@@ -883,26 +883,26 @@ public class AllTests
         Assert.Equal("9@2280637935157364 030379;7.44609#731458366%10", expr1.Eval<string>());
 
         expr1.SetFomular("left(reverse(\"abcd\"),2)==\"dc\"");
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
     }
 
     [Fact]
     public void Text_Function_IsNumber_Test()
     {
         Expression expr1 = new Expression("ISNUMBER(\"0.23\")");
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
 
         expr1.SetFomular("ISNUMBER(\"0.2a3\")");
-        Assert.Equal(false, expr1.Eval<bool>());
+        Assert.False(expr1.Eval<bool>());
 
         expr1.SetFomular("IF(ISNUMBER(\"0.2a3\")==FALSE,TRUE,false)");
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
 
         expr1.SetFomular("ISNUMBER(\"\")");
-        Assert.Equal(false, expr1.Eval<bool>());
+        Assert.False(expr1.Eval<bool>());
 
         expr1.SetFomular("ISNUMBER(null)");
-        Assert.Equal(false, expr1.Eval<bool>());
+        Assert.False(expr1.Eval<bool>());
 
     }
 
@@ -948,7 +948,7 @@ public class AllTests
         Assert.Equal("", expr3.Eval<string>());
 
         Expression expr4 = new Expression("if(TRIM(null)==\"\",true,false)");
-        Assert.Equal(true, expr4.Eval<bool>());
+        Assert.True(expr4.Eval<bool>());
 
         Expression expr5 = new Expression("REPT(\"x\",5)");
         Assert.Equal("xxxxx", expr5.Eval<string>());
@@ -1110,16 +1110,16 @@ public class AllTests
     public void Text_Function_Isblank_Test()
     {
         Expression expr1 = new Expression("ISBLANK(\"ab\")");
-        Assert.Equal(false, expr1.Eval<bool>());
+        Assert.False(expr1.Eval<bool>());
 
         expr1.SetFomular("ISBLANK(\"\")");
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
 
         expr1.SetFomular("ISBLANK(null)");
-        Assert.Equal(true, expr1.Eval<bool>());
+        Assert.True(expr1.Eval<bool>());
 
         expr1.SetFomular("ISBLANK(\"\n\")");
-        Assert.Equal(false, expr1.Eval<bool>());
+        Assert.False(expr1.Eval<bool>());
     }
 
     [Fact]
@@ -1140,24 +1140,24 @@ public class AllTests
         var expr = new Expression("OR (a>0, b>0)")
             .Bind("a", 0)
             .Bind("b", 0);
-        Assert.Equal(false, expr.Eval<bool>());
+        Assert.False(expr.Eval<bool>());
         
         // false, true = true
         var expr2 = new Expression("OR (a>0, b>0)")
             .Bind("a", 0)
             .Bind("b", 1);
-        Assert.Equal(true, expr2.Eval<bool>());
+        Assert.True(expr2.Eval<bool>());
         
         // true, false = true
         var expr3 = new Expression("OR (a>0, b>0)")
             .Bind("a", 1)
             .Bind("b", 0);
-        Assert.Equal(true, expr3.Eval<bool>());
+        Assert.True(expr3.Eval<bool>());
         
         // true, true = true
         var expr4 = new Expression("OR (a>0, b>0)")
             .Bind("a", 1)
             .Bind("b", 1);
-        Assert.Equal(true, expr4.Eval<bool>());
+        Assert.True(expr4.Eval<bool>());
     }
 }
