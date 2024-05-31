@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluation.Runtime", "ExpressionEvaluation.Runtime\ExpressionEvaluation.Runtime.csproj", "{6FE81325-7B2B-485F-90F2-79C604EF6B66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluation.Runtime.Tests", "ExpressionEvaluation.Runtime.Tests\ExpressionEvaluation.Runtime.Tests.csproj", "{A12BEF92-E523-4798-A384-DF188B23948D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6FE81325-7B2B-485F-90F2-79C604EF6B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FE81325-7B2B-485F-90F2-79C604EF6B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FE81325-7B2B-485F-90F2-79C604EF6B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FE81325-7B2B-485F-90F2-79C604EF6B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A12BEF92-E523-4798-A384-DF188B23948D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12BEF92-E523-4798-A384-DF188B23948D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12BEF92-E523-4798-A384-DF188B23948D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12BEF92-E523-4798-A384-DF188B23948D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
