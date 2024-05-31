@@ -28,6 +28,7 @@ using ExpressionEvaluation.Runtime.Operators.Binop;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using ExpressionEvaluation.Runtime.Functions;
 using static ExpressionEvaluation.Runtime.Common.Afe_Common;
 
 namespace ExpressionEvaluation.Runtime
@@ -241,6 +242,18 @@ namespace ExpressionEvaluation.Runtime
             return this;
         }
 
+        public Expression RegisterFunction(IFunction function)
+        {
+            this.Parser.RegisterFunction(function);
+            return this;
+        }
+        
+        public Expression RegisterFunction(Type type)
+        {
+            RegisterFunction((IFunction)Activator.CreateInstance(type));
+            return this;
+        }
+        
         /// <summary>
         /// Disable single function
         /// </summary>

@@ -573,7 +573,7 @@ namespace ExpressionEvaluation.Runtime.Common
         /// <summary>
         /// Function Random
         /// </summary>
-        public const string Const_Random = "random";
+        public const string Const_Random = "rand";
 
         /// <summary>
         /// Function Ceil

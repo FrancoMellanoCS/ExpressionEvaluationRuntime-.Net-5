@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluation.Runtim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluation.Runtime.Tests", "ExpressionEvaluation.Runtime.Tests\ExpressionEvaluation.Runtime.Tests.csproj", "{A12BEF92-E523-4798-A384-DF188B23948D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionEvaluation.Functions.Samples", "ExpressionEvaluation.Functions.Samples\ExpressionEvaluation.Functions.Samples.csproj", "{98A2801C-6E71-48E7-BE4D-5982305A8EEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A12BEF92-E523-4798-A384-DF188B23948D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A12BEF92-E523-4798-A384-DF188B23948D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A12BEF92-E523-4798-A384-DF188B23948D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A2801C-6E71-48E7-BE4D-5982305A8EEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A2801C-6E71-48E7-BE4D-5982305A8EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A2801C-6E71-48E7-BE4D-5982305A8EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A2801C-6E71-48E7-BE4D-5982305A8EEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

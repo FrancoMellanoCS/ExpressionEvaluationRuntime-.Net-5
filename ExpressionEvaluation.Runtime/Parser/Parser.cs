@@ -34,7 +34,7 @@ using static ExpressionEvaluation.Runtime.Common.Afe_Common;
 
 namespace ExpressionEvaluation.Runtime
 {
-    public class Parser
+    public partial class Parser
     {
         /// <summary>
         /// Create object Lexer
@@ -68,6 +68,7 @@ namespace ExpressionEvaluation.Runtime
         {
             this.InitOperators();
             this.InitConstants();
+            this.InitFunctions();
             this.Dc = new ExpressionContext(6, MidpointRounding.ToEven, "yyyy-MM-dd", "yyyy-MM-dd HH:mm", @"hh\:mm", CultureInfo.InvariantCulture);
         }
 
@@ -79,6 +80,7 @@ namespace ExpressionEvaluation.Runtime
         {
             this.InitOperators();
             this.InitConstants();
+            this.InitFunctions();
             this.Dc = new ExpressionContext(6, MidpointRounding.ToEven, "yyyy-MM-dd", "yyyy-MM-dd HH:mm", @"hh\:mm", CultureInfo.InvariantCulture);
             this.Lexer = new Lexer(formular, this);
             //this.Lexer.GetToken();
@@ -91,6 +93,7 @@ namespace ExpressionEvaluation.Runtime
         {
             this.InitOperators();
             this.InitConstants();
+            this.InitFunctions();
             this.Dc = dc;
         }
 
@@ -102,6 +105,7 @@ namespace ExpressionEvaluation.Runtime
         {
             this.InitOperators();
             this.InitConstants();
+            this.InitFunctions();
             this.Dc = dc;
             this.Lexer = new Lexer(formular, this);
         }
@@ -341,26 +345,14 @@ namespace ExpressionEvaluation.Runtime
                     }
                 }
                 this.Lexer.GetToken();// eat )
-                IFunction funcExecuter;
-                try
-                {
-                    Type t = Type.GetType("ExpressionEvaluation.Runtime.Functions." + identifierStr.ToLowerInvariant() + "Function", true);
-                    Object obj = (Activator.CreateInstance(t));
-
-                    if (obj == null)
-                    {
-                        throw new Exception();
-                    }
-                    funcExecuter = (IFunction)obj;
-                }
-                catch (Exception)
+                if (!Functions.TryGetValue(identifierStr.ToLowerInvariant(), out var funcExecuters))
                 {
                     throw new Exception(string.Format(Afe_Common.MSG_METH_NOTFOUND, new string[] { identifierStr.ToUpperInvariant() }));
                 }
                 
-                List<FunctionDef> functionInfos = funcExecuter.GetInfo();
-                foreach (FunctionDef functionInfo in functionInfos)
+                foreach (var funcExecuter in funcExecuters)
                 {
+                    var functionInfo = funcExecuter.FunctionDef;
                     //getParamCount() = -1 when params is unlimited
                     if ((functionInfo.ParamCount != -1 && args.Count != functionInfo.ParamCount) ||
                         (functionInfo.ParamCount == -1 && args.Count < 1))
@@ -384,7 +376,7 @@ namespace ExpressionEvaluation.Runtime
 
                     if (paramsValid)
                     {
-                        CallFuncNode callFuncNode = new CallFuncNode(identifierStr, args, functionInfo.ReturnType, funcExecuter);
+                        CallFuncNode callFuncNode = new CallFuncNode(identifierStr, args, functionInfo.ReturnType, funcExecuter.Function);
                         return callFuncNode;
                     }
                 }

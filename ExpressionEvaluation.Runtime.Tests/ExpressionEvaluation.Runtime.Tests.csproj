@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ExpressionEvaluation.Functions.Samples\ExpressionEvaluation.Functions.Samples.csproj" />
       <ProjectReference Include="..\ExpressionEvaluation.Runtime\ExpressionEvaluation.Runtime.csproj" />
     </ItemGroup>
 
