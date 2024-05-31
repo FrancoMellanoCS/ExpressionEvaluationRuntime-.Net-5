@@ -4,6 +4,17 @@
         <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageProjectUrl>https://github.com/dei79/ExpressionEvaluationRuntime</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/dei79/ExpressionEvaluationRuntime.git</RepositoryUrl>
+        <Description>Expression Evaluation Runtime</Description>
+        <PackageTags>expression evaluaton math</PackageTags>
+        <Copyright>(c) Dirk Eisenberg</Copyright>
     </PropertyGroup>
 
+    <ItemGroup>
+        <None Include="..\LICENSE" Pack="true" PackagePath="" />
+    </ItemGroup>
 </Project>
