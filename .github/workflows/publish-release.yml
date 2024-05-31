@@ -44,7 +44,7 @@ jobs:
         run: dotnet pack ./ExpressionEvaluation.Runtime --configuration Release -p:PackageVersion=${{ steps.get_version.outputs.release_version }} --output .
 
       - name: Upload Nuget Package to release
-        uses: Shopify/upload-to-release@v1
+        uses: Shopify/upload-to-release@v2
         with:
           name: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
           path: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
