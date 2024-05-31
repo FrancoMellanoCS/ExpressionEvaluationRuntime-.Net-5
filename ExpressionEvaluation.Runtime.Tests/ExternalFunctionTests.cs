@@ -25,4 +25,11 @@ public class ExternalFunctionTests
         Assert.Equal("1", ExpressionBuilder.FromFormular("JOIN('-', 1)").AddFunction(typeof(JoinFunction)).Eval<string>());
         Assert.Equal("", ExpressionBuilder.FromFormular("JOIN('-')").AddFunction(typeof(JoinFunction)).Eval<string>());
     }
+    
+    [Fact]
+    public void JoinWithStateFunctionTest()
+    {
+        Assert.Equal("1-a-#", ExpressionBuilder.FromFormular("JOINWITHSTATE('-', 1, 'a','#')").AddFunction(() => new JoinWithStateFunction("hello")).Eval<string>());
+        Assert.Equal("OK", ExpressionBuilder.FromFormular("JOINWITHSTATE('-', 1, 'a','#')").AddFunction(() => new JoinWithStateFunction("override")).Eval<string>());
+    }
 }

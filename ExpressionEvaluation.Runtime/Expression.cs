@@ -253,7 +253,13 @@ namespace ExpressionEvaluation.Runtime
             RegisterFunction((IFunction)Activator.CreateInstance(type));
             return this;
         }
-        
+
+        public Expression RegisterFunction(Func<IFunction> factory)
+        {
+            RegisterFunction(factory());
+            return this;
+        }
+
         /// <summary>
         /// Disable single function
         /// </summary>

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using ExpressionEvaluation.Runtime.Functions;
 
 namespace ExpressionEvaluation.Runtime;
 
@@ -18,6 +19,12 @@ public class ExpressionBuilderInitialized
     public ExpressionBuilderInitialized AddFunction(Type type)
     {
         _expression.RegisterFunction(type);
+        return this;
+    }
+
+    public ExpressionBuilderInitialized AddFunction(Func<IFunction> factory)
+    {
+        _expression.RegisterFunction(factory);
         return this;
     }
 }
