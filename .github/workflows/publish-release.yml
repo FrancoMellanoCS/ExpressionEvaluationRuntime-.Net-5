@@ -42,15 +42,13 @@ jobs:
                           
       - name: Pack Implementation
         run: dotnet pack ./ExpressionEvaluation.Runtime --configuration Release -p:PackageVersion=${{ steps.get_version.outputs.release_version }} --output .
-                    
-      - name: Upload Nuget Package to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
-          asset_name: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
-          tag: ${{ steps.get_version.outputs.release_tag }}
-          overwrite: true
 
+      - name: Upload Nuget Package to release
+        uses: Shopify/upload-to-release@v1
+        with:
+          name: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
+          path: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+                
       - name: Publish NuGet
         run: dotnet nuget push ./*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
