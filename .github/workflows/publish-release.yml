@@ -7,6 +7,8 @@ on:
 jobs:
   build-nuget:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
       
@@ -43,12 +45,14 @@ jobs:
       - name: Pack Implementation
         run: dotnet pack ./ExpressionEvaluation.Runtime --configuration Release -p:PackageVersion=${{ steps.get_version.outputs.release_version }} --output .
 
-      - name: Upload Nuget Package to release
-        uses: Shopify/upload-to-release@v2
+      - name: Upload Nuget Package to release (Backup Abtractions)
+        uses: svenstaro/upload-release-action@v2
         with:
-          name: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
-          path: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
+          asset_name: ExpressionEvaluation.Runtime.${{ steps.get_version.outputs.release_version }}.nupkg
+          tag: ${{ steps.get_version.outputs.release_tag }}
+          overwrite: true  
                 
       - name: Publish NuGet
         run: dotnet nuget push ./*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
