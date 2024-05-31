@@ -42,10 +42,10 @@ jobs:
       - name: Test
         run: dotnet test --no-restore ExpressionEvaluationRuntime.sln
                           
-      - name: Pack Implementation
+      - name: Pack Runtime Implementation
         run: dotnet pack ./ExpressionEvaluation.Runtime --configuration Release -p:PackageVersion=${{ steps.get_version.outputs.release_version }} --output .
 
-      - name: Upload Nuget Package to release (Backup Abtractions)
+      - name: Upload Nuget Package to release (Runtime Implementation)
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
