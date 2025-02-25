@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
-        <ImplicitUsings>enable</ImplicitUsings>
+        <TargetFrameworks>net5.0</TargetFrameworks>
+        <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>disable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <PackageReadmeFile>README.md</PackageReadmeFile>
