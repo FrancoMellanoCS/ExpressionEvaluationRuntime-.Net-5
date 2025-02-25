@@ -8,6 +8,8 @@ me know by creating a new issue.
 [Eduardo Salinas](https://github.com/butulia) (from Huesca, Spain)
 [MathEval](https://github.com/matheval) (from Matheval)
 
+This version supports .NET 5 Framework
+
 # Installation
 Using Package Manager
 
